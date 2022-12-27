@@ -5,6 +5,7 @@ import 'package:whatsapp_ui/screens/mobile_layout_screen.dart';
 import 'package:whatsapp_ui/screens/web_layout_screen.dart';
 import 'package:whatsapp_ui/utils/responsive_layout.dart';
 
+import 'features/landing/screens/landing_screen.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -27,10 +28,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: backgroundColor,
       ),
-      home: const ResponsiveLayout(
-        mobileScreenLayout: MobileLayoutScreen(),
-        webScreenLayout: WebLayoutScreen(),
-      ),
+      home: const LandingScreen(),
+      // home: const ResponsiveLayout(
+      //   mobileScreenLayout: MobileLayoutScreen(),
+      //   webScreenLayout: WebLayoutScreen(),
+      // ),
     );
   }
 }
