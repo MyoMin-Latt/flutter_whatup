@@ -20,9 +20,9 @@ class WebLayoutScreen extends StatelessWidget {
           Expanded(
             child: SingleChildScrollView(
               child: Column(
-                children: [
-                  const WebProfileBar(),
-                  const WebSearchBar(),
+                children: const [
+                  WebProfileBar(),
+                  WebSearchBar(),
                   ContactsList(),
                 ],
               ),
@@ -43,8 +43,8 @@ class WebLayoutScreen extends StatelessWidget {
             ),
             child: Column(
               children: [
-                ChatAppBar(),
-                SizedBox(height: 20),
+                const ChatAppBar(),
+                const SizedBox(height: 20),
                 Expanded(
                   child: ListView.builder(
                     itemCount: messages.length,
@@ -105,12 +105,11 @@ class WebLayoutScreen extends StatelessWidget {
                                   style: BorderStyle.none,
                                 ),
                               ),
-                              contentPadding: EdgeInsets.only(left: 20),
+                              contentPadding: const EdgeInsets.only(left: 20),
                             ),
                           ),
                         ),
                       ),
-
                       IconButton(
                         onPressed: () {},
                         icon: const Icon(

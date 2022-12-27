@@ -1,11 +1,17 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
 import 'package:whatsapp_ui/colors.dart';
 
 class MyMessageCard extends StatelessWidget {
   String message;
   String date;
 
-  MyMessageCard({Key? key, required this.message, required this.date}) : super(key: key);
+  MyMessageCard({
+    Key? key,
+    required this.message,
+    required this.date,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +49,7 @@ class MyMessageCard extends StatelessWidget {
                   children: [
                     Text(
                       date,
-                      style:const TextStyle(
+                      style: const TextStyle(
                         fontSize: 13,
                         color: Colors.white60,
                       ),

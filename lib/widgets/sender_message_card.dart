@@ -34,7 +34,7 @@ class SenderMessageCard extends StatelessWidget {
                 ),
                 child: Text(
                   message,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16,
                   ),
                 ),

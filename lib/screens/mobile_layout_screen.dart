@@ -53,7 +53,7 @@ class MobileLayoutScreen extends StatelessWidget {
             ],
           ),
         ),
-        body: ContactsList(),
+        body: const ContactsList(),
         floatingActionButton: FloatingActionButton(
           onPressed: () {},
           backgroundColor: tabColor,

@@ -3,7 +3,7 @@ import 'package:whatsapp_ui/colors.dart';
 import 'package:whatsapp_ui/info.dart';
 
 class ContactsList extends StatelessWidget {
-  ContactsList({Key? key}) : super(key: key);
+  const ContactsList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +27,10 @@ class ContactsList extends StatelessWidget {
                       ),
                     ),
                     subtitle: Padding(
-                      padding: EdgeInsets.only(top: 6.0),
+                      padding: const EdgeInsets.only(top: 6.0),
                       child: Text(
                         info[index]['message'].toString(),
-                        style: TextStyle(fontSize: 15),
+                        style: const TextStyle(fontSize: 15),
                       ),
                     ),
                     leading: CircleAvatar(
