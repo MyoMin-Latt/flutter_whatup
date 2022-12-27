@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:whatsapp_ui/colors.dart';
+import 'package:whatsapp_ui/features/auth/screens/login_screen.dart';
 import 'package:whatsapp_ui/screens/mobile_layout_screen.dart';
 import 'package:whatsapp_ui/screens/web_layout_screen.dart';
 import 'package:whatsapp_ui/utils/responsive_layout.dart';
@@ -28,7 +29,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: backgroundColor,
       ),
-      home: const LandingScreen(),
+      home: const LoginScreen(),
+      // home: const LandingScreen(),
       // home: const ResponsiveLayout(
       //   mobileScreenLayout: MobileLayoutScreen(),
       //   webScreenLayout: WebLayoutScreen(),
