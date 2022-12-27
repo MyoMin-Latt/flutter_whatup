@@ -1,9 +1,12 @@
 // import 'package:country_picker/country_picker.dart';
+import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 // import 'package:whatsapp_ui/common/utils/colors.dart';
 // import 'package:whatsapp_ui/common/utils/utils.dart';
 import 'package:whatsapp_ui/common/widgets/custom_button.dart';
+
+import '../../../colors.dart';
 // import 'package:whatsapp_ui/features/auth/controller/auth_controller.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
@@ -16,23 +19,23 @@ class LoginScreen extends ConsumerStatefulWidget {
 
 class _LoginScreenState extends ConsumerState<LoginScreen> {
   final phoneController = TextEditingController();
-  // Country? country;
+  Country? country;
 
-  // @override
-  // void dispose() {
-  //   super.dispose();
-  //   phoneController.dispose();
-  // }
+  @override
+  void dispose() {
+    super.dispose();
+    phoneController.dispose();
+  }
 
-  // void pickCountry() {
-  //   showCountryPicker(
-  //       context: context,
-  //       onSelect: (Country _country) {
-  //         setState(() {
-  //           country = _country;
-  //         });
-  //       });
-  // }
+  void pickCountry() {
+    showCountryPicker(
+        context: context,
+        onSelect: (Country _country) {
+          setState(() {
+            country = _country;
+          });
+        });
+  }
 
   // void sendPhoneNumber() {
   //   String phoneNumber = phoneController.text.trim();
@@ -53,7 +56,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       appBar: AppBar(
         title: const Text('Enter your phone number'),
         elevation: 0,
-        // backgroundColor: backgroundColor,
+        backgroundColor: backgroundColor,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -64,14 +67,13 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               const Text('WhatsApp will need to verify your phone number.'),
               const SizedBox(height: 10),
               TextButton(
-                onPressed: () {},
-                // onPressed: pickCountry,
+                onPressed: pickCountry,
                 child: const Text('Pick Country'),
               ),
               const SizedBox(height: 5),
               Row(
                 children: [
-                  // if (country != null) Text('+${country!.phoneCode}'),
+                  if (country != null) Text('+${country!.phoneCode}'),
                   const SizedBox(width: 10),
                   SizedBox(
                     width: size.width * 0.7,
