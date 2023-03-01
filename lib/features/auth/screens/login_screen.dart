@@ -7,6 +7,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:whatsapp_ui/common/widgets/custom_button.dart';
 
 import '../../../colors.dart';
+import '../../../common/utils/utils.dart';
+import '../../controller/auth_controller.dart';
 // import 'package:whatsapp_ui/features/auth/controller/auth_controller.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
@@ -37,16 +39,16 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         });
   }
 
-  // void sendPhoneNumber() {
-  //   String phoneNumber = phoneController.text.trim();
-  //   if (country != null && phoneNumber.isNotEmpty) {
-  //     ref
-  //         .read(authControllerProvider)
-  //         .signInWithPhone(context, '+${country!.phoneCode}$phoneNumber');
-  //   } else {
-  //     showSnackBar(context: context, content: 'Fill out all the fields');
-  //   }
-  // }
+  void sendPhoneNumber() {
+    String phoneNumber = phoneController.text.trim();
+    if (country != null && phoneNumber.isNotEmpty) {
+      ref
+          .read(authControllerProvider)
+          .signInWithPhone(context, '+${country!.phoneCode}$phoneNumber');
+    } else {
+      showSnackBar(context: context, content: 'Fill out all the fields');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -90,8 +92,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               SizedBox(
                 width: 90,
                 child: CustomButton(
-                  onPressed: () {},
-                  // onPressed: sendPhoneNumber,
+                  // onPressed: () {},
+                  onPressed: sendPhoneNumber,
                   text: 'NEXT',
                 ),
               ),

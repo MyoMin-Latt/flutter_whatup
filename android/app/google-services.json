@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "556814792462-rgkksa4egs3ijird364rfkicfcvh2104.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.whatsapp_ui",
+            "certificate_hash": "009f12f35ca3d656ea66ea455fd85644eb15012c"
+          }
+        },
+        {
           "client_id": "556814792462-jaurskgor79g8udsvo9pq83r66ri0fqf.apps.googleusercontent.com",
           "client_type": 3
         }

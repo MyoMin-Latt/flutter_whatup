@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:whatsapp_ui/colors.dart';
 
+// ignore: must_be_immutable
 class MyMessageCard extends StatelessWidget {
   String message;
   String date;
