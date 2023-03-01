@@ -17,7 +17,8 @@ class UserInformationScreen extends StatelessWidget {
                   backgroundImage: NetworkImage(
                       'https://pixabay.com/vectors/blank-profile-picture-mystery-man-973460'),
                   radius: 30,
-                )
+                ),
+                IconButton(onPressed: () {}, icon: Icon(Icons.add_a_photo))
               ],
             )
           ],
