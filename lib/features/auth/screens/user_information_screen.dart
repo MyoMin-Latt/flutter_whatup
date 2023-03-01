@@ -6,6 +6,23 @@ class UserInformationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return Scaffold(
+      body: SafeArea(
+          child: Center(
+        child: Column(
+          children: [
+            Stack(
+              children: [
+                CircleAvatar(
+                  backgroundImage: NetworkImage(
+                      'https://pixabay.com/vectors/blank-profile-picture-mystery-man-973460'),
+                  radius: 30,
+                )
+              ],
+            )
+          ],
+        ),
+      )),
+    );
   }
 }
