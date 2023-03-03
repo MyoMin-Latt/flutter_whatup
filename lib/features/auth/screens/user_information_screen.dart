@@ -1,17 +1,19 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:whatsapp_ui/common/utils/utils.dart';
+import 'package:whatsapp_ui/features/controller/auth_controller.dart';
 
-class UserInformationScreen extends StatefulWidget {
+class UserInformationScreen extends ConsumerStatefulWidget {
   static const String routeName = '/user-information';
   const UserInformationScreen({Key? key}) : super(key: key);
 
   @override
-  State<UserInformationScreen> createState() => _UserInformationScreenState();
+  UserInformationScreenState createState() => UserInformationScreenState();
 }
 
-class _UserInformationScreenState extends State<UserInformationScreen> {
+class UserInformationScreenState extends ConsumerState<UserInformationScreen> {
   final nameController = TextEditingController();
   File? image;
   @override
@@ -23,6 +25,15 @@ class _UserInformationScreenState extends State<UserInformationScreen> {
   void selectImage() async {
     image = await pickImageFromGallery(context);
     setState(() {});
+  }
+
+  void storeUserData() async {
+    String name = nameController.text.trim();
+    ref.read(authControllerProvider).saveUserDataToFirebase(
+          context,
+          name,
+          image,
+        );
   }
 
   @override
@@ -68,7 +79,8 @@ class _UserInformationScreenState extends State<UserInformationScreen> {
                     ),
                   ),
                 ),
-                IconButton(onPressed: () {}, icon: const Icon(Icons.done))
+                IconButton(
+                    onPressed: storeUserData, icon: const Icon(Icons.done))
               ],
             )
           ],
