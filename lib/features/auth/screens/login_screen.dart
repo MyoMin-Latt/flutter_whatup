@@ -8,7 +8,7 @@ import 'package:whatsapp_ui/common/widgets/custom_button.dart';
 
 import '../../../colors.dart';
 import '../../../common/utils/utils.dart';
-import '../../controller/auth_controller.dart';
+import '../controller/auth_controller.dart';
 // import 'package:whatsapp_ui/features/auth/controller/auth_controller.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
