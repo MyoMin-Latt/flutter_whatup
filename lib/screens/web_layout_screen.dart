@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_ui/colors.dart';
+import 'package:whatsapp_ui/features/chat/widgets/chat_list.dart';
 import 'package:whatsapp_ui/info.dart';
 import 'package:whatsapp_ui/widgets/chat_appbar.dart';
 import 'package:whatsapp_ui/widgets/contacts_list.dart';
@@ -45,23 +46,7 @@ class WebLayoutScreen extends StatelessWidget {
               children: [
                 const ChatAppBar(),
                 const SizedBox(height: 20),
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: messages.length,
-                    itemBuilder: (context, index) {
-                      if (messages[index]['isMe'] == true) {
-                        return MyMessageCard(
-                          message: messages[index]['text'].toString(),
-                          date: messages[index]['time'].toString(),
-                        );
-                      }
-                      return SenderMessageCard(
-                        message: messages[index]['text'].toString(),
-                        date: messages[index]['time'].toString(),
-                      );
-                    },
-                  ),
-                ),
+                const Expanded(child: ChatList(receiverUserId: '')),
                 Container(
                   height: MediaQuery.of(context).size.height * 0.07,
                   padding: const EdgeInsets.all(10),

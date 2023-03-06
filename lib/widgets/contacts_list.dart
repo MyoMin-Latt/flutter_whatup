@@ -35,14 +35,6 @@ class ContactsList extends ConsumerWidget {
                               'name': chatContactData.name,
                               'uid': chatContactData.contactId,
                             });
-                        // Navigator.of(context).push(
-                        //   MaterialPageRoute(
-                        //     builder: (context) => const MobileChatScreen(
-                        //       name: 'RR',
-                        //       uid: '12345',
-                        //     ),
-                        //   ),
-                        // );
                       },
                       child: Padding(
                         padding: const EdgeInsets.only(bottom: 8.0),
