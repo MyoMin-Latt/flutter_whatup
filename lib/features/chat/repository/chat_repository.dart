@@ -127,11 +127,22 @@ class ChatRepository {
       messageId: messageId,
       isSeen: false,
     );
+    // users > senderId >  receiverId > messages > messageId > set
     await firestore
         .collection('users')
         .doc(auth.currentUser!.uid)
         .collection('chats')
         .doc(receiverUserId)
+        .collection('messages')
+        .doc(messageId)
+        .set(message.toMap());
+
+    // users > receiverId > senderId > messages > messageId > set
+    await firestore
+        .collection('users')
+        .doc(receiverUserId)
+        .collection('chats')
+        .doc(auth.currentUser!.uid)
         .collection('messages')
         .doc(messageId)
         .set(message.toMap());
