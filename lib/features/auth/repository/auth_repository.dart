@@ -85,7 +85,7 @@ class AuthRepository {
           'https://static.vecteezy.com/system/resources/previews/002/002/403/large_2x/man-with-beard-avatar-character-isolated-icon-free-vector.jpg';
       if (profilePic != null) {
         photoUrl = await ref
-            .read(commonFirebaseStorageRepository)
+            .read(commonFirebaseStorageRepositoryProvider)
             .storeFileToFirebase('profilePic/$uid', profilePic);
       }
       var user = UserModel(
