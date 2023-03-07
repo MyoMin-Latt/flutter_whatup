@@ -2,7 +2,7 @@
     package="com.example.whatsapp_ui">
     <uses-permission android:name="android.permission.READ_CONTACTS" />  
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />
-    
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="whatsapp_ui"
         android:icon="@mipmap/ic_launcher">
