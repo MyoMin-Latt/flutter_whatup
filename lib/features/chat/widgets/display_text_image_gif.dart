@@ -16,6 +16,7 @@ class DisplayTextImageGIF extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('gif message => $message');
     return type == MessageEnum.text
         ? Text(
             message,
@@ -25,6 +26,8 @@ class DisplayTextImageGIF extends StatelessWidget {
           )
         : type == MessageEnum.video
             ? VideoPlayerItem(videoUrl: message)
-            : CachedNetworkImage(imageUrl: message);
+            : type == MessageEnum.gif
+                ? CachedNetworkImage(imageUrl: message)
+                : CachedNetworkImage(imageUrl: message);
   }
 }
