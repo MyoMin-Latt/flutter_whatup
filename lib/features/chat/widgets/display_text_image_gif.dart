@@ -17,7 +17,6 @@ class DisplayTextImageGIF extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('gif message => $message');
     bool isPlaying = false;
     final AudioPlayer audioPlayer = AudioPlayer();
 
