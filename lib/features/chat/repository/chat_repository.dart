@@ -12,6 +12,8 @@ import 'package:whatsapp_ui/models/chat_contact.dart';
 import 'package:whatsapp_ui/models/message.dart';
 import 'package:whatsapp_ui/models/user_model.dart';
 
+import '../../../common/providers/message_reply_provider.dart';
+
 final chatRepositoryProvider = Provider((ref) => ChatRepository(
       firestore: FirebaseFirestore.instance,
       auth: FirebaseAuth.instance,
@@ -120,6 +122,9 @@ class ChatRepository {
     required String username,
     required String receiverUsername,
     required MessageEnum messageType,
+    required MessageReply? messageReply,
+    required String senderUserName,
+    required String receiverUserName,
   }) async {
     final message = Message(
       senderId: auth.currentUser!.uid,
@@ -129,6 +134,14 @@ class ChatRepository {
       timeSent: timeSent,
       messageId: messageId,
       isSeen: false,
+      repliedMessage: messageReply == null ? '' : messageReply.message,
+      repliedTo: messageReply == null
+          ? ''
+          : messageReply.isMe
+              ? senderUserName
+              : receiverUserName,
+      repliedMessageType:
+          messageReply == null ? MessageEnum.text : messageReply.messageEnum,
     );
     // users > senderId >  receiverId > messages > messageId > set
     await firestore
@@ -156,6 +169,7 @@ class ChatRepository {
     required String text,
     required String receiverUserId,
     required UserModel senderUser,
+    required MessageReply? messageReply,
   }) async {
     // users -> sender id, receiver id, messages, message id, store message
     try {
@@ -184,6 +198,9 @@ class ChatRepository {
         username: senderUser.name,
         receiverUsername: receiverUserData.name,
         messageType: MessageEnum.text,
+        messageReply: messageReply,
+        receiverUserName: receiverUserData.name,
+        senderUserName: senderUser.name,
       );
     } catch (e) {
       showSnackBar(context: context, content: e.toString());
@@ -197,6 +214,7 @@ class ChatRepository {
     required UserModel senderUserData,
     required ProviderRef ref,
     required MessageEnum messageEnum,
+    required MessageReply? messageReply,
   }) async {
     try {
       var timeSent = DateTime.now();
@@ -237,14 +255,16 @@ class ChatRepository {
       );
 
       _saveMessageToMessageSubcollection(
-        receiverUserId: receiverUserId,
-        text: imageUrl,
-        timeSent: timeSent,
-        messageId: messageId,
-        username: senderUserData.name,
-        receiverUsername: receiverUserData.name,
-        messageType: messageEnum,
-      );
+          receiverUserId: receiverUserId,
+          text: imageUrl,
+          timeSent: timeSent,
+          messageId: messageId,
+          username: senderUserData.name,
+          receiverUsername: receiverUserData.name,
+          messageType: messageEnum,
+          messageReply: messageReply,
+          receiverUserName: receiverUserData.name,
+          senderUserName: senderUserData.name);
     } catch (e) {
       showSnackBar(context: context, content: e.toString());
     }
@@ -255,6 +275,7 @@ class ChatRepository {
     required String gifUrl,
     required String receiverUserId,
     required UserModel senderUser,
+    required MessageReply? messageReply,
   }) async {
     // users -> sender id, receiver id, messages, message id, store message
     try {
@@ -276,14 +297,16 @@ class ChatRepository {
       );
 
       _saveMessageToMessageSubcollection(
-        receiverUserId: receiverUserId,
-        text: gifUrl,
-        timeSent: timeSent,
-        messageId: messageId,
-        username: senderUser.name,
-        receiverUsername: receiverUserData.name,
-        messageType: MessageEnum.gif,
-      );
+          receiverUserId: receiverUserId,
+          text: gifUrl,
+          timeSent: timeSent,
+          messageId: messageId,
+          username: senderUser.name,
+          receiverUsername: receiverUserData.name,
+          messageType: MessageEnum.gif,
+          messageReply: messageReply,
+          receiverUserName: receiverUserData.name,
+          senderUserName: senderUser.name);
     } catch (e) {
       showSnackBar(context: context, content: e.toString());
     }

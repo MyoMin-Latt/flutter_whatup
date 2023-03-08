@@ -10,6 +10,9 @@ class Message {
   final DateTime timeSent;
   final String messageId;
   final bool isSeen;
+  final String repliedMessage;
+  final String repliedTo;
+  final MessageEnum repliedMessageType;
   Message({
     required this.senderId,
     required this.receiverId,
@@ -18,6 +21,9 @@ class Message {
     required this.timeSent,
     required this.messageId,
     required this.isSeen,
+    required this.repliedMessage,
+    required this.repliedTo,
+    required this.repliedMessageType,
   });
 
   Message copyWith({
@@ -28,6 +34,9 @@ class Message {
     DateTime? timeSent,
     String? messageId,
     bool? isSeen,
+    String? repliedMessage,
+    String? repliedTo,
+    MessageEnum? repliedMessageType,
   }) {
     return Message(
       senderId: senderId ?? this.senderId,
@@ -37,6 +46,9 @@ class Message {
       timeSent: timeSent ?? this.timeSent,
       messageId: messageId ?? this.messageId,
       isSeen: isSeen ?? this.isSeen,
+      repliedMessage: repliedMessage ?? this.repliedMessage,
+      repliedTo: repliedTo ?? this.repliedTo,
+      repliedMessageType: repliedMessageType ?? this.repliedMessageType,
     );
   }
 
@@ -49,6 +61,9 @@ class Message {
       'timeSent': timeSent.millisecondsSinceEpoch,
       'messageId': messageId,
       'isSeen': isSeen,
+      'repliedMessage': repliedMessage,
+      'repliedTo': repliedTo,
+      'repliedMessageType': repliedMessageType.type,
     };
   }
 
@@ -61,12 +76,15 @@ class Message {
       timeSent: DateTime.fromMillisecondsSinceEpoch(map['timeSent'] as int),
       messageId: map['messageId'] as String,
       isSeen: map['isSeen'] as bool,
+      repliedMessage: map['repliedMessage'] as String,
+      repliedTo: map['repliedTo'] as String,
+      repliedMessageType: (map['repliedMessageType'] as String).toEnum(),
     );
   }
 
   @override
   String toString() {
-    return 'Message(senderId: $senderId, receiverId: $receiverId, text: $text, type: $type, timeSent: $timeSent, messageId: $messageId, isSeen: $isSeen)';
+    return 'Message(senderId: $senderId, receiverId: $receiverId, text: $text, type: $type, timeSent: $timeSent, messageId: $messageId, isSeen: $isSeen, repliedMessage: $repliedMessage, repliedTo: $repliedTo, repliedMessageType: $repliedMessageType)';
   }
 
   @override
@@ -79,7 +97,10 @@ class Message {
         other.type == type &&
         other.timeSent == timeSent &&
         other.messageId == messageId &&
-        other.isSeen == isSeen;
+        other.isSeen == isSeen &&
+        other.repliedMessage == repliedMessage &&
+        other.repliedTo == repliedTo &&
+        other.repliedMessageType == repliedMessageType;
   }
 
   @override
@@ -90,6 +111,9 @@ class Message {
         type.hashCode ^
         timeSent.hashCode ^
         messageId.hashCode ^
-        isSeen.hashCode;
+        isSeen.hashCode ^
+        repliedMessage.hashCode ^
+        repliedTo.hashCode ^
+        repliedMessageType.hashCode;
   }
 }
