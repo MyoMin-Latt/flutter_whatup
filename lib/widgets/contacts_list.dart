@@ -39,6 +39,7 @@ class ContactsList extends ConsumerWidget {
                                   arguments: {
                                     'name': groupData.name,
                                     'uid': groupData.groupId,
+                                    'isGroupChat': true,
                                   });
                             },
                             child: Padding(
@@ -99,6 +100,7 @@ class ContactsList extends ConsumerWidget {
                                   arguments: {
                                     'name': chatContactData.name,
                                     'uid': chatContactData.contactId,
+                                    'isGroupChat': false,
                                   });
                             },
                             child: Padding(

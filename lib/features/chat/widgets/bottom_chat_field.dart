@@ -16,8 +16,12 @@ import '../controller/chat_controller.dart';
 
 class BottomChatField extends ConsumerStatefulWidget {
   final String receiverUserId;
-  const BottomChatField({Key? key, required this.receiverUserId})
-      : super(key: key);
+  final bool isGroupChat;
+  const BottomChatField({
+    Key? key,
+    required this.receiverUserId,
+    required this.isGroupChat,
+  }) : super(key: key);
 
   @override
   _BottomChatFieldState createState() => _BottomChatFieldState();
@@ -57,6 +61,7 @@ class _BottomChatFieldState extends ConsumerState<BottomChatField> {
             context,
             _messageController.text.trim(),
             widget.receiverUserId,
+            widget.isGroupChat,
           );
       setState(() => _messageController.text = '');
     } else {
@@ -87,6 +92,7 @@ class _BottomChatFieldState extends ConsumerState<BottomChatField> {
           file,
           widget.receiverUserId,
           messageEnum,
+          widget.isGroupChat,
         );
   }
 
@@ -117,6 +123,7 @@ class _BottomChatFieldState extends ConsumerState<BottomChatField> {
             context,
             gif.url,
             widget.receiverUserId,
+            widget.isGroupChat,
           );
     }
   }
