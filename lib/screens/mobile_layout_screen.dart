@@ -1,8 +1,14 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:whatsapp_ui/colors.dart';
+import 'package:whatsapp_ui/common/utils/utils.dart';
 import 'package:whatsapp_ui/features/auth/controller/auth_controller.dart';
+import 'package:whatsapp_ui/features/group/screens/create_group_screen.dart';
 import 'package:whatsapp_ui/features/select_contacts/screens/select_contacts_screen.dart';
+import 'package:whatsapp_ui/features/status/screens/confirm_status_screen.dart';
+import 'package:whatsapp_ui/features/status/screens/status_contacts_screen.dart';
 import 'package:whatsapp_ui/widgets/contacts_list.dart';
 
 class MobileLayoutScreen extends ConsumerStatefulWidget {
@@ -13,10 +19,13 @@ class MobileLayoutScreen extends ConsumerStatefulWidget {
 }
 
 class _MobileLayoutScreenState extends ConsumerState<MobileLayoutScreen>
-    with WidgetsBindingObserver {
+    with WidgetsBindingObserver, TickerProviderStateMixin {
+  late TabController tabBarController;
+
   @override
   void initState() {
     super.initState();
+    tabBarController = TabController(length: 3, vsync: this);
     WidgetsBinding.instance.addObserver(this);
   }
 
@@ -64,20 +73,34 @@ class _MobileLayoutScreenState extends ConsumerState<MobileLayoutScreen>
               icon: const Icon(Icons.search, color: Colors.grey),
               onPressed: () {},
             ),
-            IconButton(
-              icon: const Icon(Icons.more_vert, color: Colors.grey),
-              onPressed: () {},
-            ),
+            PopupMenuButton(
+              icon: const Icon(
+                Icons.more_vert,
+                color: Colors.grey,
+              ),
+              itemBuilder: (context) => [
+                PopupMenuItem(
+                  child: const Text('Create Group'),
+                  onTap: () => Future(() => Navigator.pushNamed(
+                      context, CreateGroupScreen.routeName)),
+                )
+              ],
+            )
+            // IconButton(
+            //   icon: const Icon(Icons.more_vert, color: Colors.grey),
+            //   onPressed: () {},
+            // ),
           ],
-          bottom: const TabBar(
+          bottom: TabBar(
+            controller: tabBarController,
             indicatorColor: tabColor,
             indicatorWeight: 4,
             labelColor: tabColor,
             unselectedLabelColor: Colors.grey,
-            labelStyle: TextStyle(
+            labelStyle: const TextStyle(
               fontWeight: FontWeight.bold,
             ),
-            tabs: [
+            tabs: const [
               Tab(
                 text: 'CHATS',
               ),
@@ -90,10 +113,25 @@ class _MobileLayoutScreenState extends ConsumerState<MobileLayoutScreen>
             ],
           ),
         ),
-        body: const ContactsList(),
+        body: TabBarView(controller: tabBarController, children: const [
+          ContactsList(),
+          StatusContactScreen(),
+          Text('Call'),
+        ]),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.pushNamed(context, SelectContactsScreen.routeName);
+          onPressed: () async {
+            if (tabBarController.index == 0) {
+              Navigator.pushNamed(context, SelectContactsScreen.routeName);
+            } else {
+              File? pickImage = await pickImageFromGallery(context);
+              if (pickImage != null) {
+                Navigator.pushNamed(
+                  context,
+                  ConfirmStatusScreen.routeName,
+                  arguments: pickImage,
+                );
+              }
+            }
           },
           backgroundColor: tabColor,
           child: const Icon(

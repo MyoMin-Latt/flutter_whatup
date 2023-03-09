@@ -33,7 +33,7 @@ class MyMessageCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isReplying = repliedText.isNotEmpty;
-    print('MyMessageCard : iSeen : $isSeen');
+    // print('MyMessageCard : iSeen : $isSeen');
 
     return SwipeTo(
       onLeftSwipe: onLeftSwipe,
