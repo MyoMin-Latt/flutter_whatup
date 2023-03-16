@@ -86,10 +86,6 @@ class _MobileLayoutScreenState extends ConsumerState<MobileLayoutScreen>
                 )
               ],
             )
-            // IconButton(
-            //   icon: const Icon(Icons.more_vert, color: Colors.grey),
-            //   onPressed: () {},
-            // ),
           ],
           bottom: TabBar(
             controller: tabBarController,
@@ -116,7 +112,7 @@ class _MobileLayoutScreenState extends ConsumerState<MobileLayoutScreen>
         body: TabBarView(controller: tabBarController, children: const [
           ContactsList(),
           StatusContactScreen(),
-          Text('Call'),
+          StatusContactScreen(),
         ]),
         floatingActionButton: FloatingActionButton(
           onPressed: () async {

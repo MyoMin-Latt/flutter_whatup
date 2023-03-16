@@ -8,7 +8,7 @@ class StatusContactScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return const Scaffold(
       body: Center(
-        child: Text('Error, need to test again!'),
+        child: Text('Need to test again!'),
       ),
     );
   }
