@@ -33,11 +33,9 @@ class SelectContactRepository {
       for (var document in userCollection.docs) {
         var userData = UserModel.fromMap(document.data());
 
-        debugPrint('selectContact : userData ${userData.phoneNumber}');
         String selectedPhoneNum =
             selectedContact.phones[0].number.replaceAll(' ', '');
 
-        debugPrint('selectContact : selectedPhoneNum $selectedPhoneNum');
         if (selectedPhoneNum == userData.phoneNumber) {
           isFound = true;
           Navigator.pushNamed(context, MobileChatScreen.routeName, arguments: {

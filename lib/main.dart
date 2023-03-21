@@ -34,9 +34,6 @@ class MyApp extends ConsumerWidget {
       onGenerateRoute: (settings) => generateRoute(settings),
       home: ref.watch(userDataAuthProvider).when(
             data: (user) {
-              debugPrint('userdata : $user');
-              // return const LandingScreen();
-              // return const MobileLayoutScreen();
               if (user == null) {
                 return const LandingScreen();
               } else {
@@ -44,21 +41,10 @@ class MyApp extends ConsumerWidget {
               }
             },
             error: (error, stackTrace) {
-              debugPrint('userdata Error : $error');
               return ErrorScreen(error: error.toString());
             },
             loading: () => const Loader(),
           ),
-      // home: const LandingScreen(),
-      // home: const MobileLayoutScreen(),
-      // home: const ResponsiveLayout(
-      //   mobileScreenLayout: MobileLayoutScreen(),
-      //   webScreenLayout: WebLayoutScreen(),
-      // ),
     );
   }
 }
-
-// await Firebase.initializeApp(
-//     options: DefaultFirebaseOptions.currentPlatform,
-// );

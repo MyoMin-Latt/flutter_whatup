@@ -8,7 +8,6 @@ import 'package:whatsapp_ui/features/auth/controller/auth_controller.dart';
 import 'package:whatsapp_ui/features/group/screens/create_group_screen.dart';
 import 'package:whatsapp_ui/features/select_contacts/screens/select_contacts_screen.dart';
 import 'package:whatsapp_ui/features/status/screens/confirm_status_screen.dart';
-import 'package:whatsapp_ui/features/status/screens/status_contacts_screen.dart';
 import 'package:whatsapp_ui/widgets/contacts_list.dart';
 
 class MobileLayoutScreen extends ConsumerStatefulWidget {
@@ -69,10 +68,6 @@ class _MobileLayoutScreenState extends ConsumerState<MobileLayoutScreen>
             ),
           ),
           actions: [
-            IconButton(
-              icon: const Icon(Icons.search, color: Colors.grey),
-              onPressed: () {},
-            ),
             PopupMenuButton(
               icon: const Icon(
                 Icons.more_vert,
@@ -87,33 +82,8 @@ class _MobileLayoutScreenState extends ConsumerState<MobileLayoutScreen>
               ],
             )
           ],
-          bottom: TabBar(
-            controller: tabBarController,
-            indicatorColor: tabColor,
-            indicatorWeight: 4,
-            labelColor: tabColor,
-            unselectedLabelColor: Colors.grey,
-            labelStyle: const TextStyle(
-              fontWeight: FontWeight.bold,
-            ),
-            tabs: const [
-              Tab(
-                text: 'CHATS',
-              ),
-              Tab(
-                text: 'STATUS',
-              ),
-              Tab(
-                text: 'CALLS',
-              ),
-            ],
-          ),
         ),
-        body: TabBarView(controller: tabBarController, children: const [
-          ContactsList(),
-          StatusContactScreen(),
-          StatusContactScreen(),
-        ]),
+        body: const ContactsList(),
         floatingActionButton: FloatingActionButton(
           onPressed: () async {
             if (tabBarController.index == 0) {

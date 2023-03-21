@@ -54,9 +54,7 @@ class _BottomChatFieldState extends ConsumerState<BottomChatField> {
   }
 
   void sendTextMessage() async {
-    debugPrint('sendTextMessage : init');
     if (isShowSendButton) {
-      debugPrint('sendTextMessage : isShowSendButton : true');
       ref.read(chatControllerProvider).sendTextMessage(
             context,
             _messageController.text.trim(),
@@ -65,21 +63,17 @@ class _BottomChatFieldState extends ConsumerState<BottomChatField> {
           );
       setState(() => _messageController.text = '');
     } else {
-      debugPrint('sendTextMessage : isShowSendButton : False');
       var tempDir = await getTemporaryDirectory();
       var path = '${tempDir.path}/flutter_sound.aac';
 
       if (!isRecorderInit) {
-        debugPrint('sendTextMessage : isRecorderInit : False');
         return;
       }
 
       if (isRecording) {
-        debugPrint('sendTextMessage : isRecording : true');
         await _soundRecorder!.stopRecorder();
         sendFileMessage(File(path), MessageEnum.audio);
       } else {
-        debugPrint('sendTextMessage : isRecording : false');
         await _soundRecorder!.startRecorder(toFile: path, codec: Codec.aacMP4);
       }
       setState(() => isRecording = !isRecording);
