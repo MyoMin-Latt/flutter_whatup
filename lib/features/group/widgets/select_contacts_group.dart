@@ -33,6 +33,8 @@ class _SelectContactsGroupState extends ConsumerState<SelectContactsGroup> {
     ref
         .read(selectedGroupContactsProvider.notifier)
         .update((state) => [...state, contact]);
+    print(
+        'selectedGroupContactsProvider : ${ref.watch(selectedGroupContactsProvider).length}');
   }
 
   @override

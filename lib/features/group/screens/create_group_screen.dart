@@ -54,6 +54,7 @@ class _CreateGroupScreenState extends ConsumerState<CreateGroupScreen> {
         child: Column(
           children: [
             const SizedBox(height: 10),
+            // Image
             Stack(
               children: [
                 image == null
@@ -77,6 +78,8 @@ class _CreateGroupScreenState extends ConsumerState<CreateGroupScreen> {
                 ),
               ],
             ),
+
+            // Enter name
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: TextField(
@@ -86,6 +89,8 @@ class _CreateGroupScreenState extends ConsumerState<CreateGroupScreen> {
                 ),
               ),
             ),
+
+            // Select country
             Container(
               alignment: Alignment.topLeft,
               padding: const EdgeInsets.all(10.0),
@@ -97,13 +102,14 @@ class _CreateGroupScreenState extends ConsumerState<CreateGroupScreen> {
                 ),
               ),
             ),
+
+            // contact gp
             const SelectContactsGroup(),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: tabColor,
-        // onPressed: () {},
         onPressed: () => createGroup(),
         child: const Icon(
           Icons.done,
