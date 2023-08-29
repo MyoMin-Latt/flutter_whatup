@@ -126,7 +126,7 @@ class ChatRepository {
       var receiverChatContact = ChatContact(
         name: senderUserData.name,
         profilePic: senderUserData.profilePic,
-        contactId: senderUserData.uid,
+        contactId: senderUserData.userId,
         timeSent: timeSent,
         lastMessage: text,
       );
@@ -142,7 +142,7 @@ class ChatRepository {
       var senderChatContact = ChatContact(
         name: receiverUserData!.name,
         profilePic: receiverUserData.profilePic,
-        contactId: receiverUserData.uid,
+        contactId: receiverUserData.userId,
         timeSent: timeSent,
         lastMessage: text,
       );
@@ -281,7 +281,7 @@ class ChatRepository {
       var imageUrl = await ref
           .read(commonFirebaseStorageRepositoryProvider)
           .storeFileToFirebase(
-            'chat/${messageEnum.type}/${senderUserData.uid}/$receiverUserId/$messageId',
+            'chat/${messageEnum.type}/${senderUserData.userId}/$receiverUserId/$messageId',
             file,
           );
       UserModel? receiverUserData;

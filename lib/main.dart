@@ -35,8 +35,6 @@ class MyApp extends ConsumerWidget {
       home: ref.watch(userDataAuthProvider).when(
             data: (user) {
               debugPrint('userdata : $user');
-              // return const LandingScreen();
-              // return const MobileLayoutScreen();
               if (user == null) {
                 return const LandingScreen();
               } else {
@@ -49,16 +47,6 @@ class MyApp extends ConsumerWidget {
             },
             loading: () => const Loader(),
           ),
-      // home: const LandingScreen(),
-      // home: const MobileLayoutScreen(),
-      // home: const ResponsiveLayout(
-      //   mobileScreenLayout: MobileLayoutScreen(),
-      //   webScreenLayout: WebLayoutScreen(),
-      // ),
     );
   }
 }
-
-// await Firebase.initializeApp(
-//     options: DefaultFirebaseOptions.currentPlatform,
-// );

@@ -89,8 +89,10 @@ class AuthRepository {
             .storeFileToFirebase('profilePic/$uid', profilePic);
       }
       var user = UserModel(
+        org: 'atu',
+        orgId: 'orgid',
         name: name,
-        uid: uid,
+        userId: uid,
         profilePic: photoUrl,
         isOnline: true,
         phoneNumber: auth.currentUser!.phoneNumber!,

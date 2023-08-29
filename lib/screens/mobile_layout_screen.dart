@@ -61,7 +61,7 @@ class _MobileLayoutScreenState extends ConsumerState<MobileLayoutScreen>
           backgroundColor: appBarColor,
           centerTitle: false,
           title: const Text(
-            'WhatsApp',
+            'ATuChat',
             style: TextStyle(
               fontSize: 20,
               color: Colors.grey,
@@ -86,38 +86,9 @@ class _MobileLayoutScreenState extends ConsumerState<MobileLayoutScreen>
                 )
               ],
             )
-            // IconButton(
-            //   icon: const Icon(Icons.more_vert, color: Colors.grey),
-            //   onPressed: () {},
-            // ),
           ],
-          bottom: TabBar(
-            controller: tabBarController,
-            indicatorColor: tabColor,
-            indicatorWeight: 4,
-            labelColor: tabColor,
-            unselectedLabelColor: Colors.grey,
-            labelStyle: const TextStyle(
-              fontWeight: FontWeight.bold,
-            ),
-            tabs: const [
-              Tab(
-                text: 'CHATS',
-              ),
-              Tab(
-                text: 'STATUS',
-              ),
-              Tab(
-                text: 'CALLS',
-              ),
-            ],
-          ),
         ),
-        body: TabBarView(controller: tabBarController, children: const [
-          ContactsList(),
-          StatusContactScreen(),
-          Text('Call'),
-        ]),
+        body: const ContactsList(),
         floatingActionButton: FloatingActionButton(
           onPressed: () async {
             if (tabBarController.index == 0) {

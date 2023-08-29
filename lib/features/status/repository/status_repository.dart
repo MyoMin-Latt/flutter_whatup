@@ -75,7 +75,7 @@ class StatusRepository {
         // print('StatusRepository : userDataFirebase : ${userDataFirebase.docs}');
         if (userDataFirebase.docs.isNotEmpty) {
           var userData = UserModel.fromMap(userDataFirebase.docs[0].data());
-          uidWhoCanSee.add(userData.uid);
+          uidWhoCanSee.add(userData.userId);
         }
       }
 

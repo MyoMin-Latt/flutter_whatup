@@ -1,14 +1,20 @@
+import 'dart:convert';
+
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 class UserModel {
   final String name;
-  final String uid;
+  final String userId;
+  final String org;
+  final String orgId;
   final String profilePic;
   final bool isOnline;
   final String phoneNumber;
   final List<dynamic> groupId;
   UserModel({
     required this.name,
-    required this.uid,
+    required this.userId,
+    required this.org,
+    required this.orgId,
     required this.profilePic,
     required this.isOnline,
     required this.phoneNumber,
@@ -16,9 +22,11 @@ class UserModel {
   });
 
   Map<String, dynamic> toMap() {
-    return <String, dynamic>{
+    return {
       'name': name,
-      'uid': uid,
+      'userId': userId,
+      'org': org,
+      'orgId': orgId,
       'profilePic': profilePic,
       'isOnline': isOnline,
       'phoneNumber': phoneNumber,
@@ -28,13 +36,19 @@ class UserModel {
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
-        name: map['name'] as String,
-        uid: map['uid'] as String,
-        profilePic: map['profilePic'] as String,
-        isOnline: map['isOnline'] as bool,
-        phoneNumber: map['phoneNumber'] as String,
-        groupId: List<dynamic>.from(
-          (map['groupId'] as List<dynamic>),
-        ));
+      name: map['name'] ?? '',
+      userId: map['userId'] ?? '',
+      org: map['org'] ?? '',
+      orgId: map['orgId'] ?? '',
+      profilePic: map['profilePic'] ?? '',
+      isOnline: map['isOnline'] ?? false,
+      phoneNumber: map['phoneNumber'] ?? '',
+      groupId: List<dynamic>.from(map['groupId']),
+    );
   }
+
+  String toJson() => json.encode(toMap());
+
+  factory UserModel.fromJson(String source) =>
+      UserModel.fromMap(json.decode(source));
 }
